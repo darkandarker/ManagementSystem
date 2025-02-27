@@ -5,18 +5,17 @@ import com.heima.ManagementSystem.pojo.Result;
 import com.heima.ManagementSystem.service.AdminService;
 import com.heima.ManagementSystem.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 public class AdminController {
     @Autowired
     private AdminService adminService;
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
     public Result login(@RequestBody Admin admin){
         Admin a = adminService.login(admin);
 
@@ -32,9 +31,21 @@ public class AdminController {
 
         return Result.error("用户名或密码错误");
     }
-    @PostMapping("/register")
+    @PostMapping("/admin/register")
     public Result register(@RequestBody Admin admin){
         adminService.register(admin);
+        return Result.success();
+    }
+
+    @GetMapping("/admin/list")
+    public Result list(){
+        List<Admin> adminList = adminService.list();
+        return Result.success(adminList);
+    }
+
+    @DeleteMapping("/admin/{username}")
+    public Result delete(@PathVariable String username){
+        adminService.delete(username);
         return Result.success();
     }
 }

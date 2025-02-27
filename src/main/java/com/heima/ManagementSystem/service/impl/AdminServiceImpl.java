@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -23,5 +24,15 @@ public class AdminServiceImpl implements AdminService {
         admin.setCreateTime(LocalDateTime.now());
         admin.setUpdateTime(LocalDateTime.now());
         adminMapper.save(admin);
+    }
+
+    @Override
+    public List<Admin> list() {
+        return adminMapper.list();
+    }
+
+    @Override
+    public void delete(String username) {
+        adminMapper.delete(username);
     }
 }

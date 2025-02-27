@@ -1,0 +1,7 @@
+package com.heima.ManagementSystem.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface ElderMapper {
+}
