@@ -16,5 +16,5 @@ public interface DeviceMapper {
     @Select("select count(*) from device")
     public Long count();
 
-    List<Device> page(Integer start, Integer pageSize, String deviceId, Short status);
+    List<Device> page(@Param("start") Integer start, @Param("pageSize") Integer pageSize,@Param("deviceId") String deviceId,@Param("status") Short status);
 }

@@ -5,7 +5,7 @@
 <mapper namespace="com.heima.ManagementSystem.mapper.DeviceMapper">
     <select id="page" resultType="com.heima.ManagementSystem.pojo.Device">
         select *
-        from emp
+        from device
         <where>
             <if test="deviceId != null">
                 device_id like concat(#{deviceId},'%')
